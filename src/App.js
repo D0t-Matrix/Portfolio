@@ -17,12 +17,12 @@ function App() {
 
   const title = "Dominic Kenney";
 
-  let headerLinks = [
-    { title: "Home", path: "/" },
-    { title: "About", path: "/about" },
-    { title: "Contact", path: "/contact" },
-    { title: "Projects", path: "/projects" },
-  ];
+  // let headerLinks = [
+  //   { title: "Home", path: "/" },
+  //   { title: "About", path: "/about" },
+  //   { title: "Contact", path: "/contact" },
+  //   { title: "Projects", path: "/projects" },
+  // ];
   
   let home = {
     title: "Developer with no focus",
