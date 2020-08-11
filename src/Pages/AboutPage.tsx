@@ -22,3 +22,5 @@ const AboutPage: React.FC<Page> = (props: Page) => {
         </div>
     )
 }
+
+export default AboutPage;

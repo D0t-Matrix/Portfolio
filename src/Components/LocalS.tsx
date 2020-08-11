@@ -1,5 +1,3 @@
-import React from 'react';
-
 function save(key: string, data: any) {
     let obj = data instanceof Object ? { ...data } : { value: data };
     const dataString = JSON.stringify(obj);

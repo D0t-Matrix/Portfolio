@@ -1,26 +1,24 @@
-import React from 'react';
-
-interface Props {
+export interface Props {
     title: string,
     theme: string,
     brand: string,
     pages: Pages,
 }
 
-interface Pages extends Array<Page>{};
+export interface Pages extends Array<Page>{};
 
-interface Page {
+export interface Page {
     pageData: PageData,
     directory: string,
     directoryTitle: string,
 
 }
 
-interface PageData {
+export interface PageData {
     title: string,
     subTitle?: string,
     text?: string,
 }
 
 
-export type { Props, Pages, Page, PageData };
+//export type { Props, Pages, Page, PageData };

@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
+import * as ReactStrap from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
 
 import {save, load, exists} from './Components/LocalS';
 import {Page, Props} from './Components/AppProps';

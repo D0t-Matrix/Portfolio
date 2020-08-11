@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Container, Row, Col } from 'react-bootstrap';
+import { Jumbotron, Container, Row, Col } from 'reactstrap';
 
 import { PageData } from './AppProps';
 
