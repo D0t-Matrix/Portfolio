@@ -1,33 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { Props, Pages } from './AppProps';
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem } from 'reactstrap';
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap';
 
 const linkNode = (pages: Pages) => {
     return (pages.map(page => {
-        return (<NavItem><Link className="nav-link" to={page.directory}>{page.directoryTitle}</Link></NavItem>);
+        return (<NavItem><NavLink className="nav-link" href={page.directory}>{page.directoryTitle}</NavLink></NavItem>);
     }));
 }
 
-const [isOpen, setOpen] = React.useState(false);
-
-const toggle = () => {
-    if (isOpen === false)
-        setOpen(true);
-    else
-        setOpen(false);
-}
 
 const Header: React.FC<Props> = (props: Props) => {
     let navThemeStr = props.theme.split('-')[0];
-    // let navProps: NavbarProps = {
-    //     variant: "light",
-    // }
-    // if (navThemeStr === "dark")
-    //     navProps.variant = "dark";
 
+    const [isOpen, setOpen] = React.useState(false);
 
+    const toggle = () => {
+        if (isOpen === false)
+            setOpen(true);
+        else
+            setOpen(false);
+    }
 
     return (
         <div>

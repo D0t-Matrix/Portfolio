@@ -1,13 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import * as ReactStrap from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Container } from 'reactstrap';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 
-import {save, load, exists} from './Components/LocalS';
-import {Page, Props} from './Components/AppProps';
-
+//Personal Imports
+import { save, load, exists } from './Components/LocalS';
+import { Page, Props } from './Components/AppProps';
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import HomePage from "./Pages/HomePage";
+import AboutPage from "./Pages/AboutPage";
+import ContactPage from "./Pages/ContactPage";
+import ProjectsPage from "./Pages/ProjectsPage";
+import { getBsProps } from 'react-bootstrap/lib/utils/bootstrapUtils';
 
 
 
@@ -49,37 +56,37 @@ let projects: Page = {
 
 const getPrefColorScheme = () => {
   if (!window.matchMedia) return;
-  
+
   return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 
+
 const getInitialMode = () => {
   const isReturningUser = exists('dark');
-  const savedMode = load('dark');
+  const savedMode: boolean = load('dark');
   const userPrefDark = getPrefColorScheme();
-  
+
   //if mode is saved, load and use that given value.
   if (isReturningUser)
-  return savedMode;
+    return savedMode;
   //if no saved value found, use preferred color scheme of system
   else if (userPrefDark)
-  return true;
+    return true;
   //otherwise, assume light
   else
-  return false;
+    return false;
 }
 
-
-
-let props: Props = {
-  title: "Dominic Kenney",
-  theme: getInitialMode() ? "dark-mode" : "light-mode",
-  brand: "Dot Matrix",
-  pages: [home, about, projects, contact]
-}
 
 const App: React.FC = () => {
   
+  let props: Props = {
+    title: "Dominic Kenney",
+    theme: getInitialMode() ? "dark-mode" : "light-mode",
+    brand: "Dot Matrix",
+    pages: [home, about, projects, contact]
+  }
+
   const [darkMode, setDarkMode] = React.useState(getInitialMode());
 
   React.useEffect(() => {
@@ -87,21 +94,48 @@ const App: React.FC = () => {
   }, [darkMode])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={darkMode ? "dark-mode" : "light-mode"}>
+      <title>{props.title}</title>
+      <Router >
+        <Container className="p-0" fluid={true}>
+          <button onClick={() => setDarkMode(prevMode => !prevMode)}>Toggle Dark Mode</button>
+          <Header title={props.title} brand={props.brand} pages={props.pages} theme={darkMode ? "dark-mode" : "light-mode"} />
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <HomePage
+                title={home.pageData.title}
+                subTitle={home.pageData.subTitle}
+                text={home.pageData.text}
+              />
+            )}
+          />
+
+          <Route
+            path="/projects"
+            render={() => (
+              <ProjectsPage
+                title={projects.pageData.title}
+                subTitle={projects.pageData.subTitle}
+                text={projects.pageData.text}
+              />
+            )}
+          />
+
+          <Route
+            path="/about"
+            render={() => <AboutPage title={about.pageData.title} />}
+          />
+
+          <Route
+            path="/contact"
+            render={() => <ContactPage title={contact.pageData.title} />}
+          />
+
+          <Footer />
+        </Container>
+      </Router>
     </div>
   );
 }

@@ -1,16 +1,16 @@
 import React from 'react';
 
 import BodyFill from '../Components/BodyFill';
-import {Page} from '../Components/AppProps';
+import {PageData} from '../Components/AppProps';
 import Content from '../Components/Content';
 
 import Self from '../assets/images/Self.jpg';
 
-const AboutPage: React.FC<Page> = (props: Page) => {
+const AboutPage: React.FC<PageData> = (props: PageData) => {
 
     return (
         <div>
-            <BodyFill title={props.pageData.title} />
+            <BodyFill title={props.title} />
 
             <Content>
                 <img src={Self} alt="self" />

@@ -1,13 +1,13 @@
 import React from 'react';
 
 import BodyFill from '../Components/BodyFill';
-import {Page} from '../Components/AppProps';
+import {PageData} from '../Components/AppProps';
 
-const HomePage: React.FC<Page> = (props: Page) => {
+const HomePage: React.FC<PageData> = (props: PageData) => {
 
     return (
         <div>
-            <BodyFill title={props.pageData.title} subTitle={props.pageData.subTitle} text={props.pageData.text} />
+            <BodyFill title={props.title} subTitle={props.subTitle} text={props.text} />
         </div>
     );
 }
