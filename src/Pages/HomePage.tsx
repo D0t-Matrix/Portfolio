@@ -1,9 +1,9 @@
 import React from 'react';
 
 import BodyFill from '../Components/BodyFill';
-import {PageData} from '../Components/AppProps';
+import {Data} from '../../global';
 
-const HomePage: React.FC<PageData> = (props: PageData) => {
+const HomePage: React.FC<Data> = (props: Data) => {
 
     return (
         <div>

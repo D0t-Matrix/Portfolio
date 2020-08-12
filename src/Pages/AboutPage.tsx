@@ -1,12 +1,12 @@
 import React from 'react';
 
 import BodyFill from '../Components/BodyFill';
-import {PageData} from '../Components/AppProps';
+import {Data,} from '../../global';
 import Content from '../Components/Content';
 
 import Self from '../assets/images/Self.jpg';
 
-const AboutPage: React.FC<PageData> = (props: PageData) => {
+const AboutPage: React.FC<Data> = (props: Data) => {
 
     return (
         <div>

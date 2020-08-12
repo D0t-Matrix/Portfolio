@@ -1,9 +1,9 @@
 import React from 'react';
 import { Jumbotron, Container, Row, Col } from 'reactstrap';
 
-import { PageData } from './AppProps';
+import { Data } from '../../global';
 
-const BodyFill: React.FC<PageData> = (props: PageData) => {
+const BodyFill: React.FC<Data> = (props: Data) => {
     return (
         <Jumbotron className="bg-transparent jumbotron-fluid p-0">
             <Container fluid={true}>

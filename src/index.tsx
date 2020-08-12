@@ -4,9 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import {AppProps} from './utils/AppProps';
+
+
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <title>{AppProps.title}</title>
+    <App pages={AppProps.pages} brand={AppProps.brand}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
