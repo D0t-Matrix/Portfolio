@@ -14,10 +14,8 @@ import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
 import ContactPage from "./Pages/ContactPage";
 import ProjectsPage from "./Pages/ProjectsPage";
-import { getBsProps } from 'react-bootstrap/lib/utils/bootstrapUtils';
 
-
-
+//Values
 var home: Page = {
   pageData: {
     title: "Developer with no focus",
@@ -54,6 +52,8 @@ let projects: Page = {
   directory: '/projects',
 }
 
+
+//helper functions
 const getPrefColorScheme = () => {
   if (!window.matchMedia) return;
 
@@ -79,7 +79,7 @@ const getInitialMode = () => {
 
 
 const App: React.FC = () => {
-  
+
   let props: Props = {
     title: "Dominic Kenney",
     theme: getInitialMode() ? "dark-mode" : "light-mode",
@@ -98,40 +98,42 @@ const App: React.FC = () => {
       <title>{props.title}</title>
       <Router >
         <Container className="p-0" fluid={true}>
-          <button onClick={() => setDarkMode(prevMode => !prevMode)}>Toggle Dark Mode</button>
           <Header title={props.title} brand={props.brand} pages={props.pages} theme={darkMode ? "dark-mode" : "light-mode"} />
-          <Route
-            path="/"
-            exact
-            render={() => (
-              <HomePage
-                title={home.pageData.title}
-                subTitle={home.pageData.subTitle}
-                text={home.pageData.text}
-              />
-            )}
-          />
+          <div className="Content-Page">
 
-          <Route
-            path="/projects"
-            render={() => (
-              <ProjectsPage
-                title={projects.pageData.title}
-                subTitle={projects.pageData.subTitle}
-                text={projects.pageData.text}
-              />
-            )}
-          />
+            <Route
+              path="/"
+              exact
+              render={() => (
+                <HomePage
+                  title={home.pageData.title}
+                  subTitle={home.pageData.subTitle}
+                  text={home.pageData.text}
+                />
+              )}
+            />
 
-          <Route
-            path="/about"
-            render={() => <AboutPage title={about.pageData.title} />}
-          />
+            <Route
+              path="/projects"
+              render={() => (
+                <ProjectsPage
+                  title={projects.pageData.title}
+                  subTitle={projects.pageData.subTitle}
+                  text={projects.pageData.text}
+                />
+              )}
+            />
 
-          <Route
-            path="/contact"
-            render={() => <ContactPage title={contact.pageData.title} />}
-          />
+            <Route
+              path="/about"
+              render={() => <AboutPage title={about.pageData.title} />}
+            />
+
+            <Route
+              path="/contact"
+              render={() => <ContactPage title={contact.pageData.title} />}
+            />
+          </div>
 
           <Footer />
         </Container>

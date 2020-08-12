@@ -1,7 +1,7 @@
 export interface Props {
-    title: string,
-    theme: string,
-    brand: string,
+    title?: string,
+    theme?: string,
+    brand?: string,
     pages: Pages,
 }
 
