@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Props, Pages, Page } from '../../../global';
+import { Props, Page } from '../../../global';
 import './Header.scss';
 import { MenuIcon } from '../Icons/MenuIcon/MenuIcon';
 import { CloseIcon } from '../Icons/CloseIcon/CloseIcon';
@@ -23,7 +23,7 @@ const Header: React.FC<Props> = (props) => {
         return (
             <ul className="links-container">
                 {props.pages.map((link, i) => HeaderLink(link, i))}
-                <button onClick={closeMenu} className="close-button" role="button" aria-label="Close mobile menu">
+                <button onClick={closeMenu} className="close-button" aria-label="Close mobile menu">
                     <CloseIcon/>
                 </button>
             </ul>
@@ -52,7 +52,7 @@ const Header: React.FC<Props> = (props) => {
                 </div>
                 <HeaderLinks/>
                 <div onClick={closeMenu} className="backdrop"></div>
-                <button onClick={openMobileMenu} className="hambuger-menu-button" role="button" aria-label="Open mobile menu">
+                <button onClick={openMobileMenu} className="hambuger-menu-button" aria-label="Open mobile menu">
                     <MenuIcon/>
                 </button>
             </div>

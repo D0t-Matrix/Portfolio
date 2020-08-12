@@ -1,48 +1,46 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import './App.css';
 
 //Personal Imports
-import { save, load, exists } from './Components/LocalS';
-import { Page, Props } from '../global';
-import {AppProps} from './utils/AppProps';
+import { Props } from '../global';
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer";
 
 
 
-//helper functions
-const getPrefColorScheme = () => {
-  if (!window.matchMedia) return;
+// //helper functions
+// const getPrefColorScheme = () => {
+//   if (!window.matchMedia) return;
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
-}
+//   return window.matchMedia("(prefers-color-scheme: dark)").matches;
+// }
 
-const getInitialMode = () => {
-    const isReturningUser = exists('dark');
-    const savedMode: boolean = load('dark');
-    const userPrefDark = getPrefColorScheme();
+// const getInitialMode = () => {
+//   const isReturningUser = exists('dark');
+//   const savedMode: boolean = load('dark');
+//   const userPrefDark = getPrefColorScheme();
 
-    //if mode is saved, load and use that given value.
-    if (isReturningUser)
-        return savedMode;
-    //if no saved value found, use preferred color scheme of system
-    else if (userPrefDark)
-        return true;
-    //otherwise, assume light
-    else
-        return false;
-}
+//   //if mode is saved, load and use that given value.
+//   if (isReturningUser)
+//     return savedMode;
+//   //if no saved value found, use preferred color scheme of system
+//   else if (userPrefDark)
+//     return true;
+//   //otherwise, assume light
+//   else
+//     return false;
+// }
 
 const App: React.FC<Props> = (props) => {    
-  const [darkMode, setDarkMode] = useState(getInitialMode());
+  // const [darkMode, setDarkMode] = useState(getInitialMode());
 
-  const [theme, setTheme] = useState<string>(getInitialMode() ? "dark-mode" : "light-mode");
+  // // const [theme, setTheme] = useState<string>(getInitialMode() ? "dark-mode" : "light-mode");
 
-  useEffect(() => {
-    save('dark', darkMode);
-  }, [darkMode])
+  // useEffect(() => {
+  //   save('dark', darkMode);
+  // }, [darkMode])
 
   const RenderRoutes = () => {
       const routes = props.pages.map((page) => {
@@ -67,10 +65,10 @@ const App: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className={darkMode ? "dark-mode" : "light-mode"}>
+    <div >
       <Router >
         <Container className="p-0" fluid={true}>
-          <Header brand={props.brand} pages={props.pages} theme={darkMode ? "dark-mode" : "light-mode"} />
+          <Header brand={props.brand} pages={props.pages} theme="dark-mode"/>
           <div className="Content-Page">
             <RenderRoutes/>
           </div>
