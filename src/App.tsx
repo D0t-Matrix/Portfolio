@@ -1,57 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container } from 'reactstrap';
-//import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
 
 //Personal Imports
 import { save, load, exists } from './Components/LocalS';
-import { Page, Props } from './Components/AppProps';
-import Header from "./Components/Header";
+import { Page } from '../global';
+import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer";
-import HomePage from "./Pages/HomePage";
-import AboutPage from "./Pages/AboutPage";
-import ContactPage from "./Pages/ContactPage";
-import ProjectsPage from "./Pages/ProjectsPage";
 
-//Values
-var home: Page = {
-  pageData: {
-    title: "Developer with no focus",
-    subTitle: "Projects that grow creativity",
-    text: "Check out my projects below.",
-  },
-  directory: '/',
-  directoryTitle: 'Home',
-};
-
-let about: Page = {
-  pageData: {
-    title: "About me",
-  },
-  directoryTitle: 'About',
-  directory: '/about',
-};
-
-let contact: Page = {
-  pageData: {
-    title: "Let's Chat",
-  },
-  directoryTitle: 'Contact Me',
-  directory: '/contact',
-};
-
-let projects: Page = {
-  pageData: {
-    title: "My various projects",
-    subTitle: "Questioning my sanity",
-    text: "Projects I've built and have a public Repo for",
-  },
-  directoryTitle: "My Projects",
-  directory: '/projects',
-}
-
+const HomePage = React.lazy(() => import('./Pages/HomePage'));
+const AboutPage = React.lazy(() => import('./Pages/AboutPage'));
+const ContactPage = React.lazy(() => import('./Pages/ContactPage'));
+const ProjectsPage = React.lazy(() => import('./Pages/ProjectsPage'));
 
 //helper functions
 const getPrefColorScheme = () => {
@@ -60,81 +21,109 @@ const getPrefColorScheme = () => {
   return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 
-
 const getInitialMode = () => {
-  const isReturningUser = exists('dark');
-  const savedMode: boolean = load('dark');
-  const userPrefDark = getPrefColorScheme();
+    const isReturningUser = exists('dark');
+    const savedMode: boolean = load('dark');
+    const userPrefDark = getPrefColorScheme();
 
-  //if mode is saved, load and use that given value.
-  if (isReturningUser)
-    return savedMode;
-  //if no saved value found, use preferred color scheme of system
-  else if (userPrefDark)
-    return true;
-  //otherwise, assume light
-  else
-    return false;
+    //if mode is saved, load and use that given value.
+    if (isReturningUser)
+        return savedMode;
+    //if no saved value found, use preferred color scheme of system
+    else if (userPrefDark)
+        return true;
+    //otherwise, assume light
+    else
+        return false;
 }
 
+export const pagesRouteData: Array<any> = [
+    {
+        pageComponent: HomePage,
+        pageData: {
+            title: "Developer with no focus",
+            subTitle: "Projects that grow creativity",
+            text: "Check out my projects below.",
+        },
+        directory: '/',
+        directoryTitle: 'Home',
+    },
+    {
+        pageComponent: AboutPage,
+        pageData: {
+            title: "About me",
+        },
+        directoryTitle: 'About',
+        directory: '/about',
+    },
+    {
+        pageComponent: ContactPage,
+        pageData: {
+            title: "Let's Chat",
+        },
+        directoryTitle: 'Contact Me',
+        directory: '/contact',
+    },
+    {
+        pageComponent: ProjectsPage,
+        pageData: {
+            title: "My various projects",
+            subTitle: "Questioning my sanity",
+            text: "Projects I've built and have a public Repo for",
+        },
+        directoryTitle: "My Projects",
+        directory: '/projects',
+    },
+];
 
-const App: React.FC = () => {
+interface AppProps {
+    pages: Array<Page>;
+}
 
-  let props: Props = {
-    title: "Dominic Kenney",
-    theme: getInitialMode() ? "dark-mode" : "light-mode",
-    brand: "Dot Matrix",
-    pages: [home, about, projects, contact]
-  }
+const App: React.FC<AppProps> = (props) => {    
+  const [darkMode, setDarkMode] = useState(getInitialMode());
 
-  const [darkMode, setDarkMode] = React.useState(getInitialMode());
+  const [title, setTitle] = useState<string>('Dominic Kenney');
 
-  React.useEffect(() => {
+  const [theme, setTheme] = useState<string>(getInitialMode() ? "dark-mode" : "light-mode");
+
+  const [brand, setBrand] = useState<string>('Dot Matrix');
+
+  useEffect(() => {
     save('dark', darkMode);
   }, [darkMode])
 
+  const RenderRoutes = () => {
+      const routes = pagesRouteData.map((page) => {
+            const TagName = page.pageComponent;
+            return (
+                <Route
+                    path={page.directory}
+                    exact
+                    render={() => (
+                        <Suspense fallback={<div>Page Loading...</div>}>
+                            <TagName
+                                title={page.pageData.title}
+                                subTitle={page.pageData.subTitle}
+                                text={page.pageData.text}
+                            />
+                        </Suspense>
+                    )}
+                />
+            );
+      });
+    return <>{routes}</>
+  }
+
   return (
     <div className={darkMode ? "dark-mode" : "light-mode"}>
-      <title>{props.title}</title>
+      <title>{title}</title>
       <Router >
         <Container className="p-0" fluid={true}>
-          <Header title={props.title} brand={props.brand} pages={props.pages} theme={darkMode ? "dark-mode" : "light-mode"} />
+          <Header title={title} brand={brand} pages={props.pages} theme={darkMode ? "dark-mode" : "light-mode"} />
           <div className="Content-Page">
-
-            <Route
-              path="/"
-              exact
-              render={() => (
-                <HomePage
-                  title={home.pageData.title}
-                  subTitle={home.pageData.subTitle}
-                  text={home.pageData.text}
-                />
-              )}
-            />
-
-            <Route
-              path="/projects"
-              render={() => (
-                <ProjectsPage
-                  title={projects.pageData.title}
-                  subTitle={projects.pageData.subTitle}
-                  text={projects.pageData.text}
-                />
-              )}
-            />
-
-            <Route
-              path="/about"
-              render={() => <AboutPage title={about.pageData.title} />}
-            />
-
-            <Route
-              path="/contact"
-              render={() => <ContactPage title={contact.pageData.title} />}
-            />
+            <RenderRoutes/>
           </div>
-
           <Footer />
         </Container>
       </Router>

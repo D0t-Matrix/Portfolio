@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './sass/main.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { pagesData } from './utils/pagesData';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App pages={pagesData} />
   </React.StrictMode>,
   document.getElementById('root')
 );

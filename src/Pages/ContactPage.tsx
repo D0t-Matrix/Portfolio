@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {PageData} from '../Components/AppProps';
+import {PageData} from '../../global';
 
 const ContactPage: React.FC<PageData> = (props: PageData) => {
 

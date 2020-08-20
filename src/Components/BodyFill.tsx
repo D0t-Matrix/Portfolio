@@ -1,7 +1,7 @@
 import React from 'react';
 import { Jumbotron, Container, Row, Col } from 'reactstrap';
 
-import { PageData } from './AppProps';
+import { PageData } from '../../global';
 
 const BodyFill: React.FC<PageData> = (props: PageData) => {
     return (
