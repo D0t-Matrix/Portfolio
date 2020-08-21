@@ -1,7 +1,7 @@
-export interface Props {
-    title?: string,
-    theme?: string,
-    brand?: string,
+export interface AppProps {
+    title: string,
+    theme: string,
+    brand: string,
     pages: Pages,
 }
 
@@ -11,7 +11,7 @@ export interface Page {
     pageData: PageData,
     directory: string,
     directoryTitle: string,
-
+    pageComponent: any
 }
 
 export interface PageData {

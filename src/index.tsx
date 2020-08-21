@@ -4,11 +4,12 @@ import './index.css';
 import './sass/main.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { pagesData } from './utils/pagesData';
+import { AppProperties } from './utils/PagesUtilData';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App pages={pagesData} />
+    <App title={AppProperties.title} theme={AppProperties.theme} pages={AppProperties.pages} brand={AppProperties.brand}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
