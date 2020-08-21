@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Props, Pages, Page } from '../../../global';
+import { AppProps, Page } from '../../../global';
 import './Header.scss';
 import { MenuIcon } from '../Icons/MenuIcon/MenuIcon';
 import { CloseIcon } from '../Icons/CloseIcon/CloseIcon';
@@ -30,9 +30,9 @@ import { CloseIcon } from '../Icons/CloseIcon/CloseIcon';
 //         </div>
 //     );
 // }
-{/* <Header title={title} brand={brand} pages={pages} theme={darkMode ? "dark-mode" : "light-mode"} /> */}
+/* <Header title={title} brand={brand} pages={pages} theme={darkMode ? "dark-mode" : "light-mode"} /> */
 
-const Header: React.FC<Props> = (props) => {
+const Header: React.FC<AppProps> = (props) => {
     const headerElement = useRef<HTMLElement>(null);
 
     const HeaderLink = (page: Page, i: number): JSX.Element => {
@@ -59,13 +59,13 @@ const Header: React.FC<Props> = (props) => {
     const openMobileMenu = (): void => {
         if (headerElement.current) {
             headerElement.current.classList.toggle('is-menu-open');
-        } 
+        }
     }
 
     const closeMenu = (): void => {
         if (headerElement.current) {
             headerElement.current.classList.remove('is-menu-open');
-        } 
+        }
     }
 
     return (

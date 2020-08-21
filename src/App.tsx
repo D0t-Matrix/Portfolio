@@ -7,12 +7,8 @@ import './App.css';
 import { Page, AppProps } from '../global';
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer";
-import '../global';
 
 const App: React.FC<AppProps> = (props) => {
-  const title = useState<string>(props.title);
-
-  const brand = useState<string>(props.brand);
 
   const RenderRoutes = () => {
     const routes = props.pages.map((page: Page) => {
@@ -38,10 +34,10 @@ const App: React.FC<AppProps> = (props) => {
 
   return (
     <div className={props.theme}>
-      <title>{title}</title>
+      <title>{props.title}</title>
       <Router >
         <Container className="p-0" fluid={true}>
-          <Header title={title} brand={brand} pages={props} theme={props.theme} />
+          <Header title={props.title} brand={props.brand} pages={props.pages} theme={props.theme} />
           <div className="Content-Page">
             <RenderRoutes />
           </div>
