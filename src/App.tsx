@@ -1,12 +1,15 @@
-import React, { useState, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container } from 'reactstrap';
+import { ThemeProvider } from 'styled-components';
+import { Helmet } from 'react-helmet';
+
 import './App.css';
 
 //Personal Imports
 import { Page, AppProps } from '../global';
 import Header from "./Components/Header/Header";
-import Footer from "./Components/Footer";
+import Footer from "./Components/Footer/Footer";
 
 const App: React.FC<AppProps> = (props) => {
 
@@ -34,14 +37,16 @@ const App: React.FC<AppProps> = (props) => {
 
   return (
     <div className={props.theme}>
-      <title>{props.title}</title>
+      <Helmet>
+        <title>{props.title}</title>
+      </Helmet>
       <Router >
         <Container className="p-0" fluid={true}>
           <Header title={props.title} brand={props.brand} pages={props.pages} theme={props.theme} />
           <div className="Content-Page">
             <RenderRoutes />
           </div>
-          <Footer />
+          <Footer brand={props.brand} />
         </Container>
       </Router>
     </div>

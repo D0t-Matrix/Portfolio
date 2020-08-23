@@ -5,6 +5,10 @@ export interface AppProps {
     pages: Pages,
 }
 
+interface FooterProps {
+    brand: string;
+}
+
 export interface Pages extends Array<Page>{}
 
 export interface Page {
