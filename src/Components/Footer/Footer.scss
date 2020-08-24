@@ -20,7 +20,7 @@
         .brand-container {
             display: inline-flex;
             align-items: center;
-
+            transform: translateX(100%);
             a {
                 color: var(--cmich-maroon);
 
@@ -29,14 +29,12 @@
                 }
             }
 
-            .footer-madeby {
-                justify-content: right;
-                justify-items: right;
-                position: fixed;
-                bottom: 1rem;
-                right: 1rem;
-            }
+        }
 
+        .footer-madeby {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
         }
     }
 }

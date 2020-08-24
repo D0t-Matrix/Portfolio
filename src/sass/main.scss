@@ -6,4 +6,13 @@
     --cmich-maroon: rgb(106, 0, 50);
     --cmich-gold: rgb(255, 200, 46);
     --border:  rgba(14, 17, 7, 0.4);
+    --dark: #313131;
+}
+
+.dark-theme {
+    background: var(--dark);
+}
+
+.light-theme {
+    background: var(--white);
 }
