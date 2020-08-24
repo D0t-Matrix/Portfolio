@@ -36,7 +36,7 @@ const App: React.FC<AppProps> = (props) => {
   }
 
   return (
-    <div className={props.theme}>
+    <div className="dark-mode">
       <Helmet>
         <title>{props.title}</title>
       </Helmet>

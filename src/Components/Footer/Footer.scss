@@ -1,40 +1,48 @@
 .footer-component {
     position:fixed;
+    background-color: var(--banner);
     bottom: 0px;
+    left: 0px;
     display: block;
     width: 100%;
     height: auto;
-    //background-color: var(--white);
     box-shadow: 0px -3px 7px var(--border);
     z-index: 10;
+    padding: 1rem;
+    color: rgba(var(--white), 0.7);
 
-    .header-container {
+    .footer-container {
         margin: auto;
+        left: 0px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
-        //max-width: 1250px;
-        padding: 1rem;
 
         .brand-container {
             display: inline-flex;
             align-items: center;
-            transform: translateX(100%);
             a {
-                color: var(--cmich-maroon);
+                color: rgba(var(--white), 0.7);
 
-                &:focus {
-                    color: rgba($color: var(--cmich-maroon), $alpha: 0.95)
-                }
             }
+        }
+
+        .footer-center {
+            position: absolute;
+            text-align: center;
+            width: 100%;
 
         }
 
         .footer-madeby {
             position: absolute;
-            bottom: 1rem;
+            bottom: 0rem;
             right: 1rem;
+
+
         }
+
     }
+
 }

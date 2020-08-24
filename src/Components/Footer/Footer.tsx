@@ -14,6 +14,9 @@ const Footer: React.FC<FooterProps> = (props) => {
                         {props.brand}
                     </Link>
                 </div>
+                <div className="footer-center" >
+                    TEST
+                </div>
                 <div className="footer-madeby">
                     Made by: Dominic Kenney
                 </div>

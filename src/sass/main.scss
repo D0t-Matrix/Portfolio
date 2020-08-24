@@ -1,18 +1,33 @@
 @import './reset.scss';
 
 :root {
-    --white: #FFFFFF;
-    --black: #000000;
-    --cmich-maroon: rgb(106, 0, 50);
-    --cmich-gold: rgb(255, 200, 46);
+    --white: #F4EDED;
+    --black: #0D0C1D;
     --border:  rgba(14, 17, 7, 0.4);
     --dark: #313131;
+    --banner: rgba(255,255,255, 0.4);
+
+    --title: #FF101F;
+    --subtitle: #67AAF9;
+    --text: #C2E812;
+
+    --color-gray: #656256;
+    --color-green: #C2E812;
+    --color-blue: #00E8FC;
+    --color-Tyrian: #550527;
+    --color-red: #FF101F;
+
+
+    --background-dark: #0d0c1d;
+    --background-light: #f4eded;
 }
 
 .dark-theme {
-    background: var(--dark);
+    background: var(--black);
+    color: var(--white);
 }
 
 .light-theme {
     background: var(--white);
+    color: var(--black);
 }
